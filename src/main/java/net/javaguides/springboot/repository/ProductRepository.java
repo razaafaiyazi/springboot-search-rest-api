@@ -12,14 +12,14 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     //BELOW IS JPQL QUERY
     //:query -> this refers to the param we are passing to the query or we can say that
     // it's a placeholder
-    @Query("SELECT p FROM Product" +
+    @Query("SELECT p FROM Product p " +
             "WHERE p.name LIKE CONCAT('%',:query,'%')" +
-            "OR p.description LIKE CONCAT('%',:query,'%')")
-    List<Product> searchProducts(@Param("query") String query);
+            "Or p.description LIKE CONCAT('%',:query,'%')")
+    List<Product> searchProducts(String query);
 
     // below is NATIVE QUERY
     // make sure to use the attribute (nativeQuery = true)
-    /*@Query(value = "SELECT * FROM products" +
+    /*@Query(value = "SELECT * FROM products p" +
             "WHERE p.name LIKE CONCAT('%',:query,'%')" +
             "OR p.description LIKE CONCAT('%',:query,'%')",nativeQuery = true)
     List<Product> searchProductsSQL(@Param("query") String query);*/
